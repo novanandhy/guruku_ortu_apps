@@ -6,7 +6,6 @@ package com.example.chorryigas.bismillahtugasakhir.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 
 import com.example.chorryigas.bismillahtugasakhir.GlobalUse.Server;
 import com.example.chorryigas.bismillahtugasakhir.Model.ModelGuruHome;
-import com.example.chorryigas.bismillahtugasakhir.ProfilGuru;
 import com.example.chorryigas.bismillahtugasakhir.ProfilGuruHome;
 import com.example.chorryigas.bismillahtugasakhir.R;
 import com.example.chorryigas.bismillahtugasakhir.SplashActivity;
@@ -74,7 +72,7 @@ public class RVAdapter_homeortu extends RecyclerView.Adapter<RVAdapter_homeortu.
         // - mengeset isi view dengan elemen dari dataset tersebut
 
         holder.namaguru.setText(guru.get(position).getNama_guru());
-        holder.pengalaman.setText(guru.get(position).getPengalaman());
+        holder.pengalaman.setText(String.valueOf(guru.get(position).getPengalaman()));
         Picasso.with(context).invalidate(Server.URLpath + "upload/" + guru.get(position).getFoto());
         Picasso.with(context).load(Server.URLpath + "upload/" + guru.get(position).getFoto()).into(holder.foto_guru);
 

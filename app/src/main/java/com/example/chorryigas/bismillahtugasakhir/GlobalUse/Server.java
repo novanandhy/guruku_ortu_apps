@@ -5,7 +5,7 @@ package com.example.chorryigas.bismillahtugasakhir.GlobalUse;
  */
 
 public class Server {
-    public static String URL = "http://192.168.1.105/";
+    public static String URL = "http://192.168.1.5/";
     public static String URLpath = URL+"guruku_api/";
 
     //untuk mendaftarkan segala pengguna [user+guru]
@@ -134,4 +134,7 @@ public class Server {
 
     //mencari fuzzy
     public static String FUZZY_URL = URLpath+"FuzzySearch.php";
+
+    //mencari guru dengan rating tertinggi dalam radius 20km
+    public static String GURU_GET_ALL = URLpath+"guru_get_all.php";
 }

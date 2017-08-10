@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -123,6 +124,7 @@ public class SplashActivity extends AppCompatActivity {
                         //menangkap indeks array JSON "user"
                         JSONArray list = jObj.getJSONArray("user");
                         mLowongan.clear();
+
                         if(list!=null && list.length()>0) {
                             //mengambil setiap data di setiap indeks JSON
                             for (int i = 0; i < list.length(); i++) {
@@ -157,6 +159,11 @@ public class SplashActivity extends AppCompatActivity {
                     } else {
                         //terjadi kesalahan saat mengambil JSON. Misal data pada db tidak ada
                         String errorMsg = jObj.getString("error_msg");
+                        Toast.makeText(SplashActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+                        mLowongan = new ArrayList<>();
+                        Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
                 } catch (JSONException e){
                     e.printStackTrace();;
@@ -209,25 +216,28 @@ public class SplashActivity extends AppCompatActivity {
                         //mengambil setiap data di setiap indeks JSON
                         for(int i=0; i<list.length(); i++){
                             JSONObject details = list.getJSONObject(i);
-                            if (details.getInt("dist") < 20){
-                                ModelGuruHome mGuru = new ModelGuruHome();
-                                mGuru.setId_guru(details.getString("id_guru"));
-                                mGuru.setNama_guru(details.getString("nama"));
-                                mGuru.setFoto(details.getString("foto"));
-                                mGuru.setNo_telp(details.getString("no_telp"));
-                                mGuru.setKampus(details.getString("kampus"));
-                                mGuru.setJurusan(details.getString("jurusan"));
-                                mGuru.setAlamat(details.getString("alamat"));
-                                mGuru.setPengalaman(details.getInt("pengalaman"));
 
-                                mGuruHome.add(mGuru);
-                            }
+                            ModelPengguna mPeng = new ModelPengguna();
+
+                            mPeng.setNama(details.getString("nama"));
+                            mPeng.setAlamat(details.getString("alamat"));
+                            mPeng.setNo_telp(details.getString("no_telp"));
+                            mPeng.setEmail(details.getString("email"));
+                            mPeng.setFoto(details.getString("foto"));
+                            mPeng.setLat(details.getString("lat"));
+                            mPeng.setLng(details.getString("lng"));
+                            Log.d(TAG, "get into response");
+
+
+                            mPengguna.add(mPeng);
                         }
+                        GetAllGuru(mPengguna.get(0).getLat(),mPengguna.get(0).getLng());
 
 
                     } else {
                         //terjadi kesalahan saat mengambil JSON. Misal data pada db tidak ada
                         String errorMsg = jObj.getString("error_msg");
+
                     }
                 } catch (JSONException e){
                     e.printStackTrace();;
@@ -260,10 +270,10 @@ public class SplashActivity extends AppCompatActivity {
 
         //merequest JSON dengan URL yang telah disediakan dengan method POST
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                Server.USER_SELECT, new Response.Listener<String>() {
+                Server.GURU_GET_ALL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "get data guru Response: " + response.toString());
+                Log.d(TAG, "get daftar guru Response: " + response.toString());
 
                 try{
                     JSONObject jObj = new JSONObject(response);
@@ -279,27 +289,28 @@ public class SplashActivity extends AppCompatActivity {
                         for(int i=0; i<list.length(); i++){
                             JSONObject details = list.getJSONObject(i);
 
-                            ModelPengguna mPeng = new ModelPengguna();
-                            mPeng.setId_user("id_user");
-                            mPeng.setNama(details.getString("nama"));
-                            mPeng.setAlamat(details.getString("alamat"));
-                            mPeng.setNo_telp(details.getString("no_telp"));
-                            mPeng.setEmail(details.getString("email"));
-                            mPeng.setFoto(details.getString("foto"));
-                            mPeng.setLat(details.getString("lat"));
-                            mPeng.setLng(details.getString("lng"));
-                            Log.d(TAG, "get into response");
+                            ModelGuruHome mGuru = new ModelGuruHome();
+                            mGuru.setId_guru(details.getString("id_guru"));
+                            mGuru.setNama_guru(details.getString("nama"));
+                            mGuru.setFoto(details.getString("foto"));
+                            mGuru.setNo_telp(details.getString("no_telp"));
+                            mGuru.setKampus(details.getString("kampus"));
+                            mGuru.setJurusan(details.getString("jurusan"));
+                            mGuru.setAlamat(details.getString("alamat"));
+                            mGuru.setPengalaman(details.getInt("pengalaman"));
 
 
-                            mPengguna.add(mPeng);
+                            mGuruHome.add(mGuru);
                         }
                         GetLowonganUser(ID_USER,false, intent_status, null);
-                        GetAllGuru(mPengguna.get(0).getLat(),mPengguna.get(0).getLng());
 
 
                     } else {
                         //terjadi kesalahan saat mengambil JSON. Misal data pada db tidak ada
                         String errorMsg = jObj.getString("error_msg");
+                        Toast.makeText(SplashActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
+                        mGuruHome = new ArrayList<>();
+                        GetLowonganUser(ID_USER,false, intent_status, null);
                     }
                 } catch (JSONException e){
                     e.printStackTrace();;
