@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,13 +17,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.chorryigas.bismillahtugasakhir.EditLowongan;
 import com.example.chorryigas.bismillahtugasakhir.GlobalUse.Server;
-import com.example.chorryigas.bismillahtugasakhir.Model.Guru;
 import com.example.chorryigas.bismillahtugasakhir.Model.ModelPencarian;
 import com.example.chorryigas.bismillahtugasakhir.ProfilGuru;
 import com.example.chorryigas.bismillahtugasakhir.R;
-import com.example.chorryigas.bismillahtugasakhir.SplashActivity;
 import com.example.chorryigas.bismillahtugasakhir.Util.AppController;
 import com.example.chorryigas.bismillahtugasakhir.Util.SessionManager;
 import com.squareup.picasso.Picasso;
@@ -33,9 +31,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.StreamHandler;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Choy on 6/7/2017.
@@ -59,18 +54,18 @@ public class RVAdapter_hasilcariguru extends RecyclerView.Adapter<RVAdapter_hasi
         public TextView lihat_profil;
         public ImageView imageView;
         public TextView pengalaman, jarak, biaya;
+        public RatingBar rating;
 
         public ViewHolder(View itemView){
             super(itemView);
 
             nama_guru = (TextView)itemView.findViewById(R.id.nama_guru);
             pend_guru = (TextView) itemView.findViewById(R.id.pend_guru);
-            lihat_profil = (TextView) itemView.findViewById(R.id.lihat_profil_guru);
             imageView = (ImageView) itemView.findViewById(R.id.foto_guru);
             pengalaman = (TextView) itemView.findViewById(R.id.peng_guru);
             jarak = (TextView) itemView.findViewById(R.id.jarak_guru);
             biaya = (TextView) itemView.findViewById(R.id.biaya_guru);
-            ambil_guru = (TextView) itemView.findViewById(R.id.ambil_guru);
+            rating = (RatingBar) itemView.findViewById(R.id.rating_guru);
         }
     }
 
@@ -89,6 +84,7 @@ public class RVAdapter_hasilcariguru extends RecyclerView.Adapter<RVAdapter_hasi
         holder.pengalaman.setText(gurus.get(position).getPengalaman());
         holder.jarak.setText(String.valueOf(gurus.get(position).getJarak()));
         holder.biaya.setText(gurus.get(position).getBiaya());
+        holder.rating.setRating(gurus.get(position).getRating());
 
         holder.lihat_profil.setOnClickListener(new View.OnClickListener() {
             @Override

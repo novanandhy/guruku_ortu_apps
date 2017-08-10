@@ -5,34 +5,27 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.chorryigas.bismillahtugasakhir.Adapter.RVAdapter_hasilcariguru;
 import com.example.chorryigas.bismillahtugasakhir.GlobalUse.Server;
-import com.example.chorryigas.bismillahtugasakhir.Model.Guru;
-import com.example.chorryigas.bismillahtugasakhir.Model.ModelLowongan;
-import com.example.chorryigas.bismillahtugasakhir.Model.ModelLowonganPribadi;
+import com.example.chorryigas.bismillahtugasakhir.Model.ModelGuruHome;
 import com.example.chorryigas.bismillahtugasakhir.Model.ModelPencarian;
-import com.example.chorryigas.bismillahtugasakhir.Model.ModelPengguna;
 import com.example.chorryigas.bismillahtugasakhir.Util.AppController;
 import com.example.chorryigas.bismillahtugasakhir.Util.SessionManager;
 import com.squareup.picasso.Picasso;
@@ -139,8 +132,12 @@ public class HasilCariGuru extends AppCompatActivity {
                             pen.setLat(details.getString("lat"));
                             pen.setLng(details.getString("lng"));
                             pen.setBiaya(details.getString("biaya"));
-                            pen.setRating(Double.valueOf(details.getString("rating")));
+                            pen.setRating(Float.valueOf(details.getString("rating")));
                             pen.setJarak(details.getString("jarak"));
+                            pen.setAlamat(details.getString("alamat"));
+                            pen.setKampus(details.getString("kampus"));
+                            pen.setJurusan(details.getString("jurusan"));
+                            pen.setNo_telp(details.getString("no_telp"));
 
 
                             mPencarian.add(pen);
@@ -391,23 +388,21 @@ public class HasilCariGuru extends AppCompatActivity {
         public class ViewHolder extends RecyclerView.ViewHolder{
             public TextView nama_guru;
             public TextView pend_guru;
-            public TextView ambil_guru;
-            public TextView lihat_profil;
             public ImageView imageView;
             public View parent;
             public TextView pengalaman, jarak, biaya;
+            public CardView cv;
 
             public ViewHolder(View itemView){
                 super(itemView);
                 parent = itemView;
                 nama_guru = (TextView)itemView.findViewById(R.id.nama_guru);
                 pend_guru = (TextView) itemView.findViewById(R.id.pend_guru);
-                lihat_profil = (TextView) itemView.findViewById(R.id.lihat_profil_guru);
                 imageView = (ImageView) itemView.findViewById(R.id.foto_guru);
                 pengalaman = (TextView) itemView.findViewById(R.id.peng_guru);
                 jarak = (TextView) itemView.findViewById(R.id.jarak_guru);
                 biaya = (TextView) itemView.findViewById(R.id.biaya_guru);
-                ambil_guru = (TextView) itemView.findViewById(R.id.ambil_guru);
+                cv = (CardView) itemView.findViewById(R.id.cv_main);
             }
         }
 
@@ -426,64 +421,33 @@ public class HasilCariGuru extends AppCompatActivity {
             holder.jarak.setText(String.valueOf(gurus.get(position).getJarak()));
             holder.biaya.setText(gurus.get(position).getBiaya());
 
-            holder.lihat_profil.setOnClickListener(new View.OnClickListener() {
+            final ModelGuruHome modelGuruHome = new ModelGuruHome();
+
+            modelGuruHome.setId_guru(gurus.get(position).getId_guru());
+            modelGuruHome.setAlamat(gurus.get(position).getAlamat());
+            modelGuruHome.setJarak(gurus.get(position).getJarak());
+            modelGuruHome.setPengalaman(Integer.parseInt(gurus.get(position).getPengalaman()));
+            modelGuruHome.setFoto(gurus.get(position).getFoto());
+            modelGuruHome.setJurusan(gurus.get(position).getJurusan());
+            modelGuruHome.setKampus(gurus.get(position).getKampus());
+            modelGuruHome.setNama_guru(gurus.get(position).getNama());
+            modelGuruHome.setNo_telp(gurus.get(position).getNo_telp());
+
+            holder.cv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context, ProfilGuru.class);
-                    intent.putExtra("id_guru", gurus.get(position).getId_guru());
+                    Intent intent = new Intent(context, ProfilGuruHome.class);
+                    intent.putExtra("guru", modelGuruHome);
+
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 }
             });
 
             Picasso.with(context).invalidate(Server.URLpath+"upload/"+gurus.get(position).getFoto());
             Picasso.with(context).load(Server.URLpath+"upload/"+gurus.get(position).getFoto()).into(holder.imageView);
-
-            holder.ambil_guru.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ambilGuru(sessionManager.getKeyId(),gurus.get(position).getId_guru());
-                }
-            });
         }
 
-        private void ambilGuru(final String id_user, final String id_guru) {
-            //Tag used to cancel the request
-            String tag_string_req = "req_register";
-            StringRequest strReq = new StringRequest(Request.Method.POST, Server.BOOKING_CREATE,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            try {
-                                Log.d(TAG, "masuk response");
-                                JSONObject jsonObject = new JSONObject(response);
-                                if(!jsonObject.getBoolean("error")){
-                                    Toast.makeText(context, "Guru berhasil di pesan", Toast.LENGTH_SHORT).show();
-                                }
-                                else Toast.makeText(context,"Update gagal",Toast.LENGTH_LONG).show();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                                Toast.makeText(context, "ora kenek", Toast.LENGTH_SHORT).show();
-                            }
-
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(context,"Koneksi bermasalah",Toast.LENGTH_LONG).show();
-                }
-            }){
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<>();
-                    params.put("id_user",""+id_user);
-                    params.put("id_guru",""+id_guru);
-                    return params;
-                }
-            };
-
-            //Adding request to request queue
-            AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
-        }
 
         public int getItemCount(){
             return gurus.size();

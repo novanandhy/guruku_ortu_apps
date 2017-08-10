@@ -14,7 +14,11 @@ public class ModelPencarian {
     private String pengalaman;
     private String lat;
     private String lng;
-    private Double rating;
+    private Float rating;
+    private String alamat;
+    private String jurusan;
+    private String kampus;
+    private String no_telp;
 
     public String getNama() {
         return nama;
@@ -40,11 +44,11 @@ public class ModelPencarian {
         this.foto = foto;
     }
 
-    public Double getRating() {
+    public Float getRating() {
         return rating;
     }
 
-    public void setRating(Double rating) {
+    public void setRating(Float rating) {
         this.rating = rating;
     }
 
@@ -94,5 +98,37 @@ public class ModelPencarian {
 
     public void setLng(String lng) {
         this.lng = lng;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+
+    public String getJurusan() {
+        return jurusan;
+    }
+
+    public void setJurusan(String jurusan) {
+        this.jurusan = jurusan;
+    }
+
+    public String getKampus() {
+        return kampus;
+    }
+
+    public void setKampus(String kampus) {
+        this.kampus = kampus;
+    }
+
+    public String getNo_telp() {
+        return no_telp;
+    }
+
+    public void setNo_telp(String no_telp) {
+        this.no_telp = no_telp;
     }
 }
