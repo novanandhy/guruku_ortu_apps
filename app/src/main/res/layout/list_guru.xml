@@ -12,7 +12,7 @@
         card_view:cardBackgroundColor="@color/background_material_light"
         card_view:cardCornerRadius="3dp"
         card_view:cardElevation="2.5dp">
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -20,40 +20,78 @@
 
             <ImageView
                 android:id="@+id/foto_guru"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/userwarna"
-                android:layout_alignParentTop="true"
-                android:layout_gravity="center"/>
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:fitsSystemWindows="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/userwarna" />
 
             <TextView
                 android:id="@+id/nama_guru"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/foto_guru"
-                android:textColor="@android:color/black"
-                android:textStyle="bold"
-                android:textSize="12sp"
+                android:gravity="center"
                 android:layout_margin="5dp"
-                android:layout_gravity="center"/>
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Pengalaman" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/pengalaman_guru"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="20"
-                    android:layout_margin="5dp"/>
+                    android:text="12"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bulan"
-                    android:layout_margin="5dp"/>
+                    android:layout_marginLeft="5dp"
+                    android:text="Bulan" />
             </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Jarak" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/jarak_guru"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Km" />
+            </LinearLayout>
+
 
         </LinearLayout>
     </android.support.v7.widget.CardView>

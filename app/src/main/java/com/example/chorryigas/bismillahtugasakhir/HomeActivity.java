@@ -25,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("GuruKu");
 
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.btm_nav);

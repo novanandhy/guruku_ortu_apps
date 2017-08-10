@@ -226,7 +226,6 @@ public class SplashActivity extends AppCompatActivity {
                             mPeng.setFoto(details.getString("foto"));
                             mPeng.setLat(details.getString("lat"));
                             mPeng.setLng(details.getString("lng"));
-                            Log.d(TAG, "get into response");
 
 
                             mPengguna.add(mPeng);
@@ -237,6 +236,7 @@ public class SplashActivity extends AppCompatActivity {
                     } else {
                         //terjadi kesalahan saat mengambil JSON. Misal data pada db tidak ada
                         String errorMsg = jObj.getString("error_msg");
+                        Toast.makeText(SplashActivity.this,errorMsg, Toast.LENGTH_SHORT).show();
 
                     }
                 } catch (JSONException e){
@@ -283,7 +283,7 @@ public class SplashActivity extends AppCompatActivity {
                     if(!error){
                         //menangkap indeks array JSON "user"
                         JSONArray list = jObj.getJSONArray("user");
-                        mPengguna.clear();
+                        mGuruHome.clear();
 
                         //mengambil setiap data di setiap indeks JSON
                         for(int i=0; i<list.length(); i++){
@@ -298,6 +298,7 @@ public class SplashActivity extends AppCompatActivity {
                             mGuru.setJurusan(details.getString("jurusan"));
                             mGuru.setAlamat(details.getString("alamat"));
                             mGuru.setPengalaman(details.getInt("pengalaman"));
+                            mGuru.setJarak(details.getString("dist"));
 
 
                             mGuruHome.add(mGuru);

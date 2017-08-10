@@ -6,6 +6,7 @@ package com.example.chorryigas.bismillahtugasakhir.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,13 +44,17 @@ public class RVAdapter_homeortu extends RecyclerView.Adapter<RVAdapter_homeortu.
         public TextView namaguru;
         public TextView pengalaman;
         public ImageView foto_guru;
+        public TextView jarak_guru;
+        public CardView cv;
 
 
         public ViewHolder(View v){
             super(v);
             namaguru = (TextView) v.findViewById(R.id.nama_guru);
             pengalaman = (TextView) v.findViewById(R.id.pengalaman_guru);
+            jarak_guru = (TextView) v.findViewById(R.id.jarak_guru);
             foto_guru = (ImageView) v.findViewById(R.id.foto_guru);
+            cv = (CardView) v.findViewById(R.id.cv_main);
 
         }
     }
@@ -72,11 +77,12 @@ public class RVAdapter_homeortu extends RecyclerView.Adapter<RVAdapter_homeortu.
         // - mengeset isi view dengan elemen dari dataset tersebut
 
         holder.namaguru.setText(guru.get(position).getNama_guru());
+        holder.jarak_guru.setText(guru.get(position).getJarak());
         holder.pengalaman.setText(String.valueOf(guru.get(position).getPengalaman()));
         Picasso.with(context).invalidate(Server.URLpath + "upload/" + guru.get(position).getFoto());
         Picasso.with(context).load(Server.URLpath + "upload/" + guru.get(position).getFoto()).into(holder.foto_guru);
 
-        holder.foto_guru.setOnClickListener(new View.OnClickListener() {
+        holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProfilGuruHome.class);
@@ -86,6 +92,8 @@ public class RVAdapter_homeortu extends RecyclerView.Adapter<RVAdapter_homeortu.
                 intent.putExtra("kampus",guru.get(position).getKampus());
                 intent.putExtra("jurusan",guru.get(position).getJurusan());
                 intent.putExtra("foto",guru.get(position).getFoto());
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 context.startActivity(intent);
             }

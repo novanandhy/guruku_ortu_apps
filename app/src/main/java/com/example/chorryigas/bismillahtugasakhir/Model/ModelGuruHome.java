@@ -1,7 +1,5 @@
 package com.example.chorryigas.bismillahtugasakhir.Model;
 
-import android.widget.ImageView;
-
 /**
  * Created by Choy on 8/9/2017.
  */
@@ -15,6 +13,7 @@ public class ModelGuruHome {
     public String kampus;
     public String jurusan;
     public int pengalaman;
+    public String jarak;
 
 
     public String getAlamat() {
@@ -79,5 +78,13 @@ public class ModelGuruHome {
 
     public void setPengalaman(int pengalaman) {
         this.pengalaman = pengalaman;
+    }
+
+    public String getJarak() {
+        return jarak;
+    }
+
+    public void setJarak(String jarak) {
+        this.jarak = jarak;
     }
 }

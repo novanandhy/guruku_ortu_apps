@@ -1,8 +1,8 @@
 package com.example.chorryigas.bismillahtugasakhir;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.example.chorryigas.bismillahtugasakhir.GlobalUse.Server;
 import com.squareup.picasso.Picasso;
 
-public class ProfilGuruHome extends AppCompatActivity {
+public class ProfilGuruHome extends Activity {
     private Context context;
 
     private ImageView foto_profil;

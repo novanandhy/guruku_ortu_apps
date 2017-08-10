@@ -21,7 +21,7 @@
         android:name=".Util.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Guruku_Ortu"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -71,7 +71,8 @@
         <activity android:name=".Registrasi" />
         <activity android:name=".KriteriaOrangTua" />
         <activity android:name=".EditLowongan" />
-        <activity android:name=".ProfilGuruHome"
+        <activity
+            android:name=".ProfilGuruHome"
         android:theme="@style/Dialog"/>
     </application>
 
