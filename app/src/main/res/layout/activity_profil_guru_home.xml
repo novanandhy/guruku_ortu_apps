@@ -3,58 +3,153 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="300dp"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.chorryigas.bismillahtugasakhir.ProfilGuruHome">
+
 
     <ImageView
         android:id="@+id/foto_guru"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+
         android:fitsSystemWindows="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/userwarna"
-        />
-    
-    <TextView
-        android:id="@+id/nama_guru"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:text="Chorry Iga Setyaningrum"
-        android:gravity="center"
-        />
+        android:src="@drawable/userwarna" />
 
-    <TextView
-        android:id="@+id/alamat_guru"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:text="Sidoarjo, Jawa Timur"
-        android:gravity="center"/>
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
 
-    <TextView
-        android:id="@+id/telp_guru"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:gravity="center"
-        />
+        <ImageButton
+            android:id="@+id/lihat_keahlian"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/list_keahlian"
+            android:background="@null"
+            android:fitsSystemWindows="true"
+            android:scaleType="fitCenter"
+            />
 
-    <TextView
-        android:id="@+id/jurusan_guru"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:gravity="center"
-        />
+        <ImageButton
+            android:id="@+id/lihat_jadwal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/lihat_jadwal"
+            android:background="@null"
+            android:fitsSystemWindows="true"
+            android:scaleType="fitCenter"
+            />
 
-    <TextView
-        android:id="@+id/kampus_guru"
+        <ImageButton
+            android:id="@+id/beri_review"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/lihat_rating"
+            android:background="@null"
+            android:fitsSystemWindows="true"
+            android:scaleType="fitCenter"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:gravity="center"
-        />
+        android:orientation="vertical"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/nama_guru"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:text="Chorry Iga Setyaningrum"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="alamat"
+            android:textColor="?android:attr/textColorTertiary"
+            android:textSize="12sp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/alamat_guru"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sidoarjo, Jawa Timur"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Telepon"
+            android:textColor="?android:attr/textColorTertiary"
+            android:textSize="12sp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/telp_guru"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sidoarjo, Jawa Timur"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Jurusan"
+            android:textColor="?android:attr/textColorTertiary"
+            android:textSize="12sp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/jurusan_guru"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sidoarjo, Jawa Timur"
+            android:gravity="center"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Kampus"
+            android:textColor="?android:attr/textColorTertiary"
+            android:textSize="12sp"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:id="@+id/kampus_guru"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sidoarjo, Jawa Timur"
+            android:gravity="center"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_pesan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="PESAN"
+        android:textColor="@android:color/white" />
 </LinearLayout>

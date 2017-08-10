@@ -1,6 +1,6 @@
 package com.example.chorryigas.bismillahtugasakhir;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,7 +25,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Rating_guru_ortu extends AppCompatActivity {
+public class Rating_guru_ortu extends Activity {
     RatingBar ratingbar;
     Button button;
     Guru guru;
@@ -65,6 +65,8 @@ public class Rating_guru_ortu extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             if(!jsonObject.getBoolean("error")){
                                 Toast.makeText(Rating_guru_ortu.this,"Submit review berhasil",Toast.LENGTH_LONG).show();
+                                setResult(RESULT_OK);
+                                finish();
                             }
                             else  Toast.makeText(Rating_guru_ortu.this,jsonObject.getString("error_msg"),Toast.LENGTH_LONG).show();
                         } catch (JSONException e) {

@@ -12,7 +12,7 @@ import org.json.JSONObject;
 
 public class ModelRating implements Parcelable {
     public String id_user;
-    public Double rating;
+    public Float rating;
     public String review;
     public String nama;
     public String foto;
@@ -25,7 +25,7 @@ public class ModelRating implements Parcelable {
             this.foto = jsonObject.getString("foto");
             this.review = jsonObject.getString("review");
             this.nama = jsonObject.getString("nama");
-            this.rating = Double.valueOf(jsonObject.getDouble("rating"));
+            this.rating = Float.valueOf(jsonObject.getString("rating"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -74,11 +74,11 @@ public class ModelRating implements Parcelable {
         this.id_user = id_user;
     }
 
-    public Double getRating() {
+    public Float getRating() {
         return rating;
     }
 
-    public void setRating(Double rating) {
+    public void setRating(Float rating) {
         this.rating = rating;
     }
 

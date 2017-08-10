@@ -1,27 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="15"
     android:padding="5dp">
 
     <ImageView
         android:id="@+id/foto_ortu"
-        android:layout_width="50dp"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginRight="5dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:src="@drawable/boy"
-        />
-    <TextView
-        android:id="@+id/reviewortu"
+        android:layout_weight="13"
+        android:layout_gravity="center"
+        android:fitsSystemWindows="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/boy" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textLongMessage"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:textColor="@android:color/black"
-        android:layout_toRightOf="@id/foto_ortu"/>
+        android:layout_margin="5dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/namaortu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="tes"
+            android:textSize="20sp"/>
 
-</RelativeLayout>
+        <RatingBar
+            android:id="@+id/rating_review"
+            android:rating="3.5"
+            android:stepSize="0.5"
+            android:numStars="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.RatingBar.Small"/>
+        <TextView
+            android:id="@+id/reviewortu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="blablablablablablab"/>
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -5,13 +5,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.chorryigas.bismillahtugasakhir.GlobalUse.Server;
 import com.example.chorryigas.bismillahtugasakhir.Model.ModelRating;
-import com.example.chorryigas.bismillahtugasakhir.Model.Review;
 import com.example.chorryigas.bismillahtugasakhir.R;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,10 +31,16 @@ public class RVAdapter_RatingGuru extends RecyclerView.Adapter<RVAdapter_RatingG
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView review_guru;
+        public TextView nama_guru;
+        public ImageView imageView;
+        public RatingBar ratingBar;
 
         public ViewHolder(View itemView){
             super(itemView);
             review_guru = (TextView) itemView.findViewById(R.id.reviewortu);
+            nama_guru = (TextView) itemView.findViewById(R.id.namaortu);
+            imageView = (ImageView) itemView.findViewById(R.id.foto_ortu);
+            ratingBar = (RatingBar) itemView.findViewById(R.id.rating_review);
         }
     }
 
@@ -45,6 +53,11 @@ public class RVAdapter_RatingGuru extends RecyclerView.Adapter<RVAdapter_RatingG
     @Override
     public void onBindViewHolder(RVAdapter_RatingGuru.ViewHolder holder, int position){
         holder.review_guru.setText(reviews.get(position).getReview());
+        holder.nama_guru.setText(reviews.get(position).getNama());
+        holder.ratingBar.setRating(reviews.get(position).getRating());
+
+        Picasso.with(context).invalidate(Server.URLpath + "upload/" + reviews.get(position).getFoto());
+        Picasso.with(context).load(Server.URLpath + "upload/" + reviews.get(position).getFoto()).into(holder.imageView);
     }
 
     public int getItemCount(){

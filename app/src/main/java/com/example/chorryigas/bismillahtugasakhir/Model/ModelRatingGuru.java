@@ -5,15 +5,15 @@ package com.example.chorryigas.bismillahtugasakhir.Model;
  */
 
 public class ModelRatingGuru {
-    public double rating;
+    public Float rating;
 
     public ModelRatingGuru(){}
 
-    public double getRating() {
+    public Float getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(Float rating) {
         this.rating = rating;
     }
 }

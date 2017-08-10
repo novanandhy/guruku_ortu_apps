@@ -86,12 +86,7 @@ public class RVAdapter_homeortu extends RecyclerView.Adapter<RVAdapter_homeortu.
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProfilGuruHome.class);
-                intent.putExtra("nama_guru",guru.get(position).getNama_guru());
-                intent.putExtra("alamat",guru.get(position).getAlamat());
-                intent.putExtra("no_telp",guru.get(position).getNo_telp());
-                intent.putExtra("kampus",guru.get(position).getKampus());
-                intent.putExtra("jurusan",guru.get(position).getJurusan());
-                intent.putExtra("foto",guru.get(position).getFoto());
+                intent.putExtra("guru", guru.get(position));
 
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

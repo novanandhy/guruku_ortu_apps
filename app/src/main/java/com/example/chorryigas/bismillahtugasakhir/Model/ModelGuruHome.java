@@ -1,10 +1,13 @@
 package com.example.chorryigas.bismillahtugasakhir.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Choy on 8/9/2017.
  */
 
-public class ModelGuruHome {
+public class ModelGuruHome implements Parcelable {
     public String id_guru;
     public String foto;
     public String nama_guru;
@@ -15,6 +18,31 @@ public class ModelGuruHome {
     public int pengalaman;
     public String jarak;
 
+    public ModelGuruHome(){}
+    
+    public ModelGuruHome(Parcel in) {
+        id_guru = in.readString();
+        foto = in.readString();
+        nama_guru = in.readString();
+        alamat = in.readString();
+        no_telp = in.readString();
+        kampus = in.readString();
+        jurusan = in.readString();
+        pengalaman = in.readInt();
+        jarak = in.readString();
+    }
+
+    public static final Creator<ModelGuruHome> CREATOR = new Creator<ModelGuruHome>() {
+        @Override
+        public ModelGuruHome createFromParcel(Parcel in) {
+            return new ModelGuruHome(in);
+        }
+
+        @Override
+        public ModelGuruHome[] newArray(int size) {
+            return new ModelGuruHome[size];
+        }
+    };
 
     public String getAlamat() {
         return alamat;
@@ -86,5 +114,23 @@ public class ModelGuruHome {
 
     public void setJarak(String jarak) {
         this.jarak = jarak;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id_guru);
+        dest.writeString(foto);
+        dest.writeString(nama_guru);
+        dest.writeString(alamat);
+        dest.writeString(no_telp);
+        dest.writeString(kampus);
+        dest.writeString(jurusan);
+        dest.writeInt(pengalaman);
+        dest.writeString(jarak);
     }
 }
