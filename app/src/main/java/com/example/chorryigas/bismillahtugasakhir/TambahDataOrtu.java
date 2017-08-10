@@ -4,18 +4,16 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -107,8 +105,13 @@ public class TambahDataOrtu extends AppCompatActivity {
                 //mendapatkan nilai dari form
                 getValueForm();
 
-                //Edit profil guru
-                EditPengguna(sessionManager.getKeyId(), nama, alamat, telp, email, latitude, longitude, image64);
+                if (latitude == 0 || longitude == 0 || alamat.isEmpty() || nama.isEmpty()
+                        || telp.isEmpty() || email.isEmpty() || image64.isEmpty()){
+                    Toast.makeText(context, "Harap isi semua form", Toast.LENGTH_SHORT).show();
+                }else{
+                    //Edit profil guru
+                    EditPengguna(sessionManager.getKeyId(), nama, alamat, telp, email, latitude, longitude, image64);
+                }
             }
         });
     }
