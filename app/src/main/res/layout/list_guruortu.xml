@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cv_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        card_view:cardBackgroundColor="@color/background_material_light"
+        card_view:cardCornerRadius="3dp"
+        card_view:cardElevation="2.5dp">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/hm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp">
+                <ImageView
+                    android:id="@+id/foto_guru"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/userwarna"/>
+
+            </RelativeLayout>
+
+            <RatingBar
+                style = "?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rating_guru"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@id/hm"
+                android:paddingTop="5dp"
+                />
+
+            <TextView
+                android:id="@+id/nama_guru"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Chorry Iga"
+                android:textColor="@android:color/black"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/rating_guru" />
+
+            <TextView
+                android:id="@+id/pend_guru"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nama_guru"
+                android:text="D3"
+                android:textColor="@android:color/black"
+                android:layout_toEndOf="@+id/rating_guru"/>
+
+            <TextView
+                android:id="@+id/materi_guru"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/rating_guru"
+                android:layout_below="@id/pend_guru"
+                android:text="Matematika"
+                android:textColor="@android:color/black"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/pend_guru">
+                <TextView
+                    android:id="@+id/status_booking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BELUM DIKONFIRM"
+                    android:textSize="5pt"
+                    android:layout_margin="5dp"
+                    android:padding="5dp"
+                    android:textColor="#ff000d"
+                    />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/materi_guru"
+                android:layout_alignParentRight="true"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/beri_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BERI REVIEW"
+                    android:layout_toRightOf="@id/ambil_guru"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#FFFFFF"
+                    android:background="@color/colorPrimary"/>
+
+                <TextView
+                    android:id="@+id/cancel_action"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CANCEL"
+                    android:layout_toRightOf="@id/beri_review"
+                    android:padding="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#FFFFFF"
+                    android:background="@color/colorPrimary"/>
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

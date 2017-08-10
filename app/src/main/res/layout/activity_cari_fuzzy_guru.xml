@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="10pt"
+                android:paddingTop="15dp"
+                android:textColor="@color/colorPrimary"
+                android:text="Masukkan Kriteria Guru"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="7pt"
+                android:textColor="@color/colorPrimary"
+                android:text="Perkiraan biaya les sesuai keahlian guru"/>
+
+            <EditText
+                android:id="@+id/biaya_fuzzy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="7pt"
+                android:textColor="@color/colorPrimary"
+                android:text="Perkiraan lama pengalaman mengajar guru (bulan)"/>
+
+            <EditText
+                android:id="@+id/pengalaman_fuzzy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:textSize="7pt"
+                android:textColor="@color/colorPrimary"
+                android:text="Perkiraan jarak ideal rumah guru (kilometer)"/>
+
+            <EditText
+                android:id="@+id/jarak_fuzzy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="15dp"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/cari_guru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CARI"
+                android:background="@color/colorPrimary"
+                android:padding="10dp"
+                android:textColor="#FFFFFF"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"/>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

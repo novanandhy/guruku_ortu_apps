@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.chorryigas.bismillahtugasakhir.KriteriaOrangTua">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="10pt"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/colorPrimary"
+            android:text="Masukkan Kriteria Guru"/>
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kriteria biaya les tiap pertemuan"
+        android:layout_margin="15dp"
+        android:textSize="7pt"
+        android:textColor="@color/colorPrimary"/>
+
+        <Spinner
+            android:id="@+id/spinner_biaya"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_marginLeft="10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kriteria banyak pengalaman guru"
+            android:layout_margin="15dp"
+            android:textSize="7pt"
+            android:textColor="@color/colorPrimary"/>
+
+        <Spinner
+            android:id="@+id/spinner_pengalaman"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:entries="@array/fuzzy_pengalaman"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kriteria jarak rumah guru"
+            android:layout_margin="15dp"
+            android:textSize="7pt"
+            android:textColor="@color/colorPrimary"/>
+
+        <Spinner
+            android:id="@+id/spinner_jarak"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:entries="@array/fuzzy_jarak"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SELANJUTNYA"
+            android:background="@color/colorPrimary"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/userwarna"
+            android:layout_gravity="center_horizontal"/>
+        <RatingBar
+            android:id="@+id/rating_guru"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Berikan Komentar Anda"
+            android:textStyle="bold"
+            android:textSize="7pt"/>
+        <EditText
+            android:id="@+id/komentar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textLongMessage"
+            android:hint="Komentar orang tua"/>
+        <Button
+            android:id="@+id/submit_reviewortu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="submit"
+            android:layout_below="@id/rating_guru"
+            android:layout_gravity="center_horizontal"/></LinearLayout>
+
+</RelativeLayout>

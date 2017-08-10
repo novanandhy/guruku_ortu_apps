@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_home"
+        android:enabled="true"
+        android:icon="@drawable/home"
+        android:title="Beranda"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_search"
+        android:enabled="true"
+        android:icon="@drawable/search"
+        android:title="Cari"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_teacher"
+        android:enabled="true"
+        android:icon="@drawable/teacher"
+        android:title="Guru"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_lowongan"
+        android:enabled="true"
+        android:icon="@drawable/list"
+        android:title="Lowongan"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_setting"
+        android:enabled="true"
+        android:icon="@drawable/settings"
+        android:title="Pengaturan"
+        app:showAsAction="ifRoom" />
+
+</menu>

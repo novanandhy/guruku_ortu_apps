@@ -1,0 +1,99 @@
+<resources>
+    <string name="app_name">BismillahTugasAkhir</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_login_guru">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <!-- String untuk kategori -->
+    <string-array name="kategori_guru">
+        <item>Pilih jenjang pendidikan</item>
+        <item>D1</item>
+        <item>D2</item>
+        <item>D3</item>
+        <item>S1</item>
+        <item>S2</item>
+        <item>S3</item>
+    </string-array>
+
+    <string-array name="jenjang_murid">
+        <item>Pilih jenjang murid</item>
+        <item>TK</item>
+        <item>SD</item>
+        <item>SMP</item>
+        <item>SMA</item>
+    </string-array>
+
+    <string-array name="matpel_murid">
+        <item>Pilih mata pelajaran</item>
+        <item>Bahasa Indonesia</item>
+        <item>Bahasa Inggris</item>
+        <item>Matematika</item>
+        <item>IPA(Umum)</item>
+        <item>IPA Fisika</item>
+        <item>IPA Kimia</item>
+        <item>IPA Biologi</item>
+        <item>IPS(Umum)</item>
+        <item>IPS Geografi</item>
+        <item>IPS Sejarah</item>
+        <item>IPS Sosiologi</item>
+    </string-array>
+
+    <string-array name="hari_les">
+        <item>Pilih hari les</item>
+        <item>Senin</item>
+        <item>Selasa</item>
+        <item>Rabu</item>
+        <item>Kamis</item>
+        <item>Jumat</item>
+        <item>Sabtu</item>
+        <item>Minggu</item>
+    </string-array>
+
+    <string-array name="jenis_kelamin">
+        <item>Pilih Jenis Kelamin Guru</item>
+        <item>Laki-laki</item>
+        <item>Perempuan</item>
+    </string-array>
+
+    <string-array name="fuzzy_biaya">
+        <item>Murah</item>
+        <item>Sedang</item>
+        <item>Mahal</item>
+    </string-array>
+
+    <string-array name="fuzzy_jarak">
+        <item>Dekat</item>
+        <item>Sedang</item>
+        <item>Jauh</item>
+    </string-array>
+
+    <string-array name="fuzzy_ipk">
+        <item>Rendah</item>
+        <item>Sedang</item>
+        <item>Tinggi</item>
+    </string-array>
+
+    <string-array name="fuzzy_pengalaman">
+        <item>Sedikit</item>
+        <item>Sedang</item>
+        <item>Banyak</item>
+    </string-array>
+    <string name="title_activity_profil_guru_guru">ProfilGuru_guru</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_login">Sign in</string>
+</resources>
