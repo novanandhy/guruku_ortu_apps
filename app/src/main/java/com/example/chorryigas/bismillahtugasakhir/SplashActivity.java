@@ -137,7 +137,7 @@ public class SplashActivity extends AppCompatActivity {
                             ModelBooking mBook = new ModelBooking();
 
                             mBook.setId(details.getInt("id"));
-                            mBook.setId_guru(details.getString("nama"));
+                            mBook.setId_guru(details.getString("id_guru"));
                             mBook.setNama(details.getString("nama"));
                             mBook.setStatus(details.getString("status"));
                             mBook.setAlamat(details.getString("alamat"));

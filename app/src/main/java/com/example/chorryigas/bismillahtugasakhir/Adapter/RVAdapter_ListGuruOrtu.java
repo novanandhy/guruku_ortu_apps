@@ -105,6 +105,7 @@ public class RVAdapter_ListGuruOrtu extends RecyclerView.Adapter<RVAdapter_ListG
         holder.foto_guru.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "onClick: "+modelGuruHome.getId_guru());
                 Intent intent = new Intent(context, ProfilGuru.class);
                 intent.putExtra("guru", modelGuruHome);
 

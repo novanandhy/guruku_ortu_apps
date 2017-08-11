@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -19,10 +20,11 @@ public class ProfilGuru extends Activity {
 
     private Context context;
     private SessionManager sessionManager;
+    ModelGuruHome guru = new ModelGuruHome();
 
     private ImageView foto_profil;
     private TextView nama_guru, alamat_guru, telp_guru, kampus, jurusan;
-    private ImageButton keahlian,jadwal,rating;
+    private ImageButton keahlian, jadwal, rating;
 
     private ProgressDialog progressDialog;
 
@@ -95,11 +97,10 @@ public class ProfilGuru extends Activity {
         alamat_guru.setText(alamat);
         kampus.setText(kmps);
         jurusan.setText(jrusan);
-        Picasso.with(context).load(Server.URLpath+"upload/"+foto).into(foto_profil);
+        Picasso.with(context).load(Server.URLpath + "upload/" + foto).into(foto_profil);
     }
 
     private void ambilDataIntent() {
-        ModelGuruHome guru = new ModelGuruHome();
         Intent intent = getIntent();
         guru = intent.getExtras().getParcelable("guru");
 
@@ -110,5 +111,6 @@ public class ProfilGuru extends Activity {
         jrusan = guru.getJurusan();
         foto = guru.getFoto();
         id_guru = guru.getId_guru();
+        Log.d(TAG, "id_guru: "+id_guru);
     }
 }
