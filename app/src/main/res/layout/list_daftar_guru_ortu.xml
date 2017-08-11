@@ -27,7 +27,9 @@
                     android:id="@+id/foto_guru"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/userwarna"/>
+                    android:src="@drawable/userwarna"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"/>
 
             </RelativeLayout>
 

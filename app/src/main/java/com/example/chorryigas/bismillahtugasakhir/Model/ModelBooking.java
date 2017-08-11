@@ -9,6 +9,13 @@ public class ModelBooking {
     public String id_user;
     public String id_guru;
     public String status;
+    public String foto;
+    public String nama;
+    public String alamat;
+    public String no_telp;
+    public String kampus;
+    public String jurusan;
+    public Float rating;
 
     public ModelBooking(){}
 
@@ -42,5 +49,61 @@ public class ModelBooking {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+
+    public String getNo_telp() {
+        return no_telp;
+    }
+
+    public void setNo_telp(String no_telp) {
+        this.no_telp = no_telp;
+    }
+
+    public String getKampus() {
+        return kampus;
+    }
+
+    public void setKampus(String kampus) {
+        this.kampus = kampus;
+    }
+
+    public String getJurusan() {
+        return jurusan;
+    }
+
+    public void setJurusan(String jurusan) {
+        this.jurusan = jurusan;
+    }
+
+    public Float getRating() {
+        return rating;
+    }
+
+    public void setRating(Float rating) {
+        this.rating = rating;
     }
 }
