@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.example.chorryigas.bismillahtugasakhir.GlobalUse.Server;
+import com.example.chorryigas.bismillahtugasakhir.Model.ModelBooking;
 import com.example.chorryigas.bismillahtugasakhir.Model.ModelGuruHome;
 import com.example.chorryigas.bismillahtugasakhir.Model.ModelLowonganPribadi;
 import com.example.chorryigas.bismillahtugasakhir.Model.ModelPengguna;
@@ -40,6 +41,7 @@ public class SplashActivity extends AppCompatActivity {
     public static ArrayList<ModelPengguna> mPengguna;
     public static ArrayList<ModelLowonganPribadi> mLowongan;
     public static ArrayList<ModelGuruHome> mGuruHome;
+    public static ArrayList<ModelBooking> mBooking;
 
     public String ID_USER;
     private static String TAG = "TAG_SplashScreen";
@@ -59,6 +61,7 @@ public class SplashActivity extends AppCompatActivity {
         mPengguna = new ArrayList<>();
         mLowongan = new ArrayList<>();
         mGuruHome = new ArrayList<>();
+        mBooking = new ArrayList<>();
 
         //cek apakah terkoneksi atau tidak
         if(isOnline()){
@@ -95,6 +98,8 @@ public class SplashActivity extends AppCompatActivity {
 
         //mengambil semua nilai JSON dan disimpan pada array list
         GetDataUser(ID_USER);
+        GetLowonganUser(ID_USER,false, intent_status, null);
+        GetBooking(ID_USER,"0");
 
     }
 
@@ -102,6 +107,83 @@ public class SplashActivity extends AppCompatActivity {
         void onLowonganRequestSuccess(String message);
         void onLowonganFailure(VolleyError e);
         void onLowonganRequestFailure(JSONException e);
+    }
+
+    public void GetBooking(final String id_user, final String previllage) {
+        //Tag used to cancel the request
+        String tag_string_req = "req_register";
+
+        //merequest JSON dengan URL yang telah disediakan dengan method POST
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                Server.BOOKING_GET, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "get data booking Response: " + response.toString());
+
+                try{
+                    JSONObject jObj = new JSONObject(response);
+                    boolean error = jObj.getBoolean("error");
+
+                    //cek apakah JSON memiliki indeks error yg true atau tidak
+                    if(!error){
+                        //menangkap indeks array JSON "user"
+                        JSONArray list = jObj.getJSONArray("user");
+                        mBooking.clear();
+
+                        //mengambil setiap data di setiap indeks JSON
+                        for(int i=0; i<list.length(); i++){
+                            JSONObject details = list.getJSONObject(i);
+
+                            ModelBooking mBook = new ModelBooking();
+
+                            mBook.setId(details.getInt("id"));
+                            mBook.setId_guru(details.getString("nama"));
+                            mBook.setNama(details.getString("nama"));
+                            mBook.setStatus(details.getString("status"));
+                            mBook.setAlamat(details.getString("alamat"));
+                            mBook.setNo_telp(details.getString("no_telp"));
+                            mBook.setFoto(details.getString("foto"));
+                            mBook.setKampus(details.getString("kampus"));
+                            mBook.setJurusan(details.getString("jurusan"));
+                            mBook.setPendidikan(details.getString("pendidikan"));
+                            mBook.setRating(Float.valueOf(details.getString("rating")));
+
+
+                            mBooking.add(mBook);
+                        }
+
+
+                    } else {
+                        //terjadi kesalahan saat mengambil JSON. Misal data pada db tidak ada
+                        String errorMsg = jObj.getString("error_msg");
+                        Toast.makeText(SplashActivity.this,errorMsg, Toast.LENGTH_SHORT).show();
+                        mBooking = new ArrayList<>();
+
+                    }
+                } catch (JSONException e){
+                    e.printStackTrace();;
+                }
+            }
+        }, new Response.ErrorListener(){
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //jika tidak ada respon dari URL (tidak ada internet
+                Log.e(TAG, "Registration Error: " + error.getMessage());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams(){
+                //memasukkan parameter untuk merequest JSON
+                Map<String, String> params = new HashMap<>();
+                params.put("id_user", id_user);
+                params.put("previllage", previllage);
+                return params;
+            }
+        };
+
+        //Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
     public void GetLowonganUser(final String id_user, final boolean flag_from, final boolean intent, @Nullable final GetLowonganInterface callback) {
@@ -303,7 +385,6 @@ public class SplashActivity extends AppCompatActivity {
 
                             mGuruHome.add(mGuru);
                         }
-                        GetLowonganUser(ID_USER,false, intent_status, null);
 
 
                     } else {
@@ -311,7 +392,6 @@ public class SplashActivity extends AppCompatActivity {
                         String errorMsg = jObj.getString("error_msg");
                         Toast.makeText(SplashActivity.this, errorMsg, Toast.LENGTH_SHORT).show();
                         mGuruHome = new ArrayList<>();
-                        GetLowonganUser(ID_USER,false, intent_status, null);
                     }
                 } catch (JSONException e){
                     e.printStackTrace();;

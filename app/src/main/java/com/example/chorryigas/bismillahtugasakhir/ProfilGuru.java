@@ -1,150 +1,114 @@
 package com.example.chorryigas.bismillahtugasakhir;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.example.chorryigas.bismillahtugasakhir.GlobalUse.Server;
-import com.example.chorryigas.bismillahtugasakhir.Model.Guru;
-import com.example.chorryigas.bismillahtugasakhir.Model.ModelGuru;
-import com.example.chorryigas.bismillahtugasakhir.Model.ModelPencarian;
-import com.example.chorryigas.bismillahtugasakhir.Util.AppController;
+import com.example.chorryigas.bismillahtugasakhir.Model.ModelGuruHome;
+import com.example.chorryigas.bismillahtugasakhir.Util.SessionManager;
+import com.squareup.picasso.Picasso;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+public class ProfilGuru extends Activity {
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+    private Context context;
+    private SessionManager sessionManager;
 
-public class ProfilGuru extends AppCompatActivity {
+    private ImageView foto_profil;
+    private TextView nama_guru, alamat_guru, telp_guru, kampus, jurusan;
+    private ImageButton keahlian,jadwal,rating;
 
-    private ImageView lihat_keahlian;
-    private ImageView lihat_jadwal;
-    private ImageView lihat_rating;
+    private ProgressDialog progressDialog;
 
-    private String id_guru;
-    private ModelGuru modelGuru;
-
-    TextView text_namaGuru;
-    TextView text_usiaGuru;
-    TextView text_kelaminGuru;
-    TextView text_alamatGuru;
-    TextView text_pendGuru;
-    TextView text_ipkGuru;
-
-    ProgressDialog progressDialog;
+    private String nama, alamat, telp, kmps, jrusan, foto, id_guru;
+    private String TAG = "TAG ProfilGuru";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil_guru);
+        context = this;
 
-        id_guru = getIntent().getStringExtra("id_guru");
+        sessionManager = new SessionManager(this);
         progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Loading");
-        progressDialog.setMessage("Memuat data guru");
-        lihat_keahlian = (ImageView)findViewById(R.id.lihat_keahlian);
-        lihat_jadwal = (ImageView)findViewById(R.id.lihat_jadwal);
-        lihat_rating = (ImageView)findViewById(R.id.beri_review);
-        text_namaGuru = (TextView) findViewById(R.id.nama_guru);
-        text_alamatGuru = (TextView) findViewById(R.id.alamat_guru);
-        text_ipkGuru = (TextView) findViewById(R.id.ipk_guru);
-        text_pendGuru = (TextView) findViewById(R.id.pend_guru);
-        text_usiaGuru = (TextView) findViewById(R.id.usia_guru);
-        text_kelaminGuru = (TextView) findViewById(R.id.jenis_kelamin);
-        buttonKeahian();
-        buttonJadwal();
-        buttonRating();
 
-        initGuru();
+        nama_guru = (TextView) findViewById(R.id.nama_guru);
+        alamat_guru = (TextView) findViewById(R.id.alamat_guru);
+        telp_guru = (TextView) findViewById(R.id.telp_guru);
+        kampus = (TextView) findViewById(R.id.kampus_guru);
+        jurusan = (TextView) findViewById(R.id.jurusan_guru);
+        foto_profil = (ImageView) findViewById(R.id.foto_guru);
+        keahlian = (ImageButton) findViewById(R.id.lihat_keahlian);
+        jadwal = (ImageButton) findViewById(R.id.lihat_jadwal);
+        rating = (ImageButton) findViewById(R.id.beri_review);
 
-    }
-
-    private void initGuru() {
-        progressDialog.show();
-        StringRequest request = new StringRequest(Request.Method.POST, Server.GURU_SELECT,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            if(!jsonResponse.getBoolean("error")){
-                                modelGuru = new ModelGuru(id_guru,jsonResponse.getJSONObject("user"));
-                                text_alamatGuru.setText(modelGuru.getAlamat());
-                                text_ipkGuru.setText(""+modelGuru.getIpk());
-                                text_namaGuru.setText(modelGuru.getNama());
-                                text_pendGuru.setText(modelGuru.getPendidikan());
-                                text_usiaGuru.setText(modelGuru.getUsia());
-                                text_kelaminGuru.setText(modelGuru.getKelamin());
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(ProfilGuru.this,"Parsing data failed",Toast.LENGTH_LONG).show();
-                        }
-                        progressDialog.dismiss();
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                progressDialog.dismiss();
-                Toast.makeText(ProfilGuru.this,"Koneksi bermasalah",Toast.LENGTH_LONG).show();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("id_guru",id_guru);
-                return params;
-            }
-        };
-        AppController.getInstance().addToRequestQueue(request);
+        ambilDataIntent();
+        setData();
+        lihatKeahlian(id_guru);
+        lihatJadwal(id_guru);
+        lihatReview(id_guru);
     }
 
 
-    private void buttonKeahian(){
-        lihat_keahlian.setOnClickListener(new View.OnClickListener(){
+    private void lihatKeahlian(final String id_guru) {
+        keahlian.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View v) {
                 Intent intent = new Intent(ProfilGuru.this, LihatKeahlian.class);
-                intent.putParcelableArrayListExtra("skill", (ArrayList<? extends Parcelable>) modelGuru.getSkill());
+                intent.putExtra("id_user", id_guru);
                 startActivity(intent);
             }
         });
     }
 
-    private void buttonJadwal(){
-        lihat_jadwal.setOnClickListener(new View.OnClickListener(){
+    private void lihatJadwal(final String id_guru) {
+        jadwal.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View v) {
                 Intent intent = new Intent(ProfilGuru.this, LihatJadwal.class);
-                intent.putParcelableArrayListExtra("jadwal", (ArrayList<? extends Parcelable>) modelGuru.getJadwal());
+                intent.putExtra("id_user", id_guru);
                 startActivity(intent);
             }
         });
     }
 
-    private void buttonRating(){
-        lihat_rating.setOnClickListener(new View.OnClickListener(){
+    private void lihatReview(final String id_guru) {
+        rating.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View v) {
                 Intent intent = new Intent(ProfilGuru.this, LihatRating.class);
-                intent.putParcelableArrayListExtra("rating", (ArrayList<? extends Parcelable>) modelGuru.getRating());
-                intent.putExtra("id_guru",modelGuru.getId_guru());
+                intent.putExtra("id_user", id_guru);
                 startActivity(intent);
             }
         });
+    }
+
+    private void setData() {
+        nama_guru.setText(nama);
+        telp_guru.setText(telp);
+        alamat_guru.setText(alamat);
+        kampus.setText(kmps);
+        jurusan.setText(jrusan);
+        Picasso.with(context).load(Server.URLpath+"upload/"+foto).into(foto_profil);
+    }
+
+    private void ambilDataIntent() {
+        ModelGuruHome guru = new ModelGuruHome();
+        Intent intent = getIntent();
+        guru = intent.getExtras().getParcelable("guru");
+
+        nama = guru.getNama_guru();
+        alamat = guru.getAlamat();
+        telp = guru.getNo_telp();
+        kmps = guru.getKampus();
+        jrusan = guru.getJurusan();
+        foto = guru.getFoto();
+        id_guru = guru.getId_guru();
     }
 }

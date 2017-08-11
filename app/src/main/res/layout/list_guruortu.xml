@@ -8,10 +8,13 @@
         android:id="@+id/cv_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
         card_view:cardBackgroundColor="@color/background_material_light"
         card_view:cardCornerRadius="3dp"
-        card_view:cardElevation="2.5dp">
+        card_view:cardElevation="2.5dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true">
 
 
         <RelativeLayout
@@ -61,58 +64,31 @@
                 android:layout_toEndOf="@+id/rating_guru"/>
 
             <TextView
-                android:id="@+id/materi_guru"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/rating_guru"
-                android:layout_below="@id/pend_guru"
-                android:text="Matematika"
-                android:textColor="@android:color/black"/>
-
-            <RelativeLayout
+                android:id="@+id/status_booking"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/pend_guru">
-                <TextView
-                    android:id="@+id/status_booking"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="BELUM DIKONFIRM"
-                    android:textSize="5pt"
-                    android:layout_margin="5dp"
-                    android:padding="5dp"
-                    android:textColor="#ff000d"
-                    />
-            </RelativeLayout>
+                android:text="BELUM DIKONFIRM"
+                android:textSize="5pt"
+                android:padding="5dp"
+                android:textColor="#ff000d"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp" />
 
-            <RelativeLayout
+            <TextView
+                android:id="@+id/cancel_action"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/materi_guru"
-                android:layout_alignParentRight="true"
-                android:padding="5dp">
-
-                <TextView
-                    android:id="@+id/beri_review"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="BERI REVIEW"
-                    android:padding="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#FFFFFF"
-                    android:background="@color/colorPrimary"/>
-
-                <TextView
-                    android:id="@+id/cancel_action"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="CANCEL"
-                    android:layout_toRightOf="@id/beri_review"
-                    android:padding="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#FFFFFF"
-                    android:background="@color/colorPrimary"/>
-            </RelativeLayout>
+                android:text="CANCEL"
+                android:padding="5dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="#FFFFFF"
+                android:background="@color/colorPrimary"
+                android:layout_marginEnd="39dp"
+                android:layout_above="@+id/rating_guru"
+                android:layout_alignParentEnd="true" />
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>

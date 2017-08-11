@@ -12,15 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="15dp">
-        <TextView
-            android:id="@+id/ket"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Lowongan yang Anda Buat"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimary"
-            android:textSize="8pt"
-            />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/list_lowongan"

@@ -39,7 +39,9 @@ public class ProfilGuruHome extends Activity {
     private Button pesan;
 
     private ProgressDialog progressDialog;
+    private SplashActivity splashActivity;
 
+    ModelGuruHome guru = new ModelGuruHome();
     private String nama, alamat, telp, kmps, jrusan, foto, id_guru;
     private String TAG = "TAG ProfilGuruHome";
 
@@ -51,6 +53,7 @@ public class ProfilGuruHome extends Activity {
 
         sessionManager = new SessionManager(this);
         progressDialog = new ProgressDialog(this);
+        splashActivity = new SplashActivity();
 
         nama_guru = (TextView) findViewById(R.id.nama_guru);
         alamat_guru = (TextView) findViewById(R.id.alamat_guru);
@@ -124,7 +127,6 @@ public class ProfilGuruHome extends Activity {
     }
 
     private void ambilDataIntent() {
-        ModelGuruHome guru = new ModelGuruHome();
         Intent intent = getIntent();
         guru = intent.getExtras().getParcelable("guru");
 
@@ -159,8 +161,9 @@ public class ProfilGuruHome extends Activity {
                     progressDialog.dismiss();
                     //cek apakah JSON memiliki indeks error yg true atau tidak
                     if(!error){
+                        splashActivity.GetBooking(sessionManager.getKeyId(),"0");
                         Toast.makeText(context, "Berhasil memesan guru", Toast.LENGTH_SHORT).show();
-                        finish();
+
                     } else {
                         //terjadi kesalahan saat mengambil JSON. Misal data pada db tidak ada
                         String errorMsg = jObj.getString("error_msg");

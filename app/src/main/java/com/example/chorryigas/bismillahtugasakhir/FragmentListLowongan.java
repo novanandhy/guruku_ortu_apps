@@ -2,11 +2,11 @@ package com.example.chorryigas.bismillahtugasakhir;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,10 +19,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.chorryigas.bismillahtugasakhir.Adapter.RVAdapter_ListLowongan;
 import com.example.chorryigas.bismillahtugasakhir.GlobalUse.Server;
-import com.example.chorryigas.bismillahtugasakhir.Model.Jadwal;
-import com.example.chorryigas.bismillahtugasakhir.Model.ModelLowongan;
 import com.example.chorryigas.bismillahtugasakhir.Model.ModelLowonganPribadi;
 import com.example.chorryigas.bismillahtugasakhir.Util.AppController;
 
@@ -32,8 +29,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-import static android.content.ContentValues.TAG;
 
 public class FragmentListLowongan extends Fragment {
 
@@ -68,6 +63,7 @@ public class FragmentListLowongan extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_list_lowongan,null,false);
         context = getActivity().getApplicationContext();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setSubtitle("Lowongan dibuat");
 
         setData(view);
         return view;

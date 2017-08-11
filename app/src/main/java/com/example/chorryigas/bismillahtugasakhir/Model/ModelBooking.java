@@ -15,6 +15,7 @@ public class ModelBooking {
     public String no_telp;
     public String kampus;
     public String jurusan;
+    public String pendidikan;
     public Float rating;
 
     public ModelBooking(){}
@@ -105,5 +106,13 @@ public class ModelBooking {
 
     public void setRating(Float rating) {
         this.rating = rating;
+    }
+
+    public String getPendidikan() {
+        return pendidikan;
+    }
+
+    public void setPendidikan(String pendidikan) {
+        this.pendidikan = pendidikan;
     }
 }

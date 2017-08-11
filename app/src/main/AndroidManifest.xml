@@ -53,9 +53,13 @@
             </intent-filter>
         </activity>
         <!-- <activity android:name=".FragmentPengaturan" /> -->
-        <activity android:name=".TambahDataOrtu" />
+        <activity
+            android:name=".TambahDataOrtu"
+            android:label="Data Diri"/>
         <activity android:name=".EditRatingGuru" />
-        <activity android:name=".ProfilGuru" />
+        <activity
+            android:name=".ProfilGuru"
+            android:theme="@style/Dialog"/>
         <activity
             android:name=".LihatKeahlian"
             android:label="Daftar Keahlian"/>
@@ -65,15 +69,23 @@
         <activity
             android:name=".LihatRating"
             android:label="Rating"/>
-        <activity android:name=".Registrasi" />
-        <activity android:name=".KriteriaOrangTua" />
-        <activity android:name=".EditLowongan" />
+        <activity
+            android:name=".Registrasi"
+            android:label="Registrasi"/>
+        <activity
+            android:name=".KriteriaOrangTua"
+            android:label="Cari"/>
+        <activity
+            android:name=".EditLowongan"
+            android:label="Ubah lowongan"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Registrasi_ortu" />
-        <activity android:name=".Cari_guru" />
+        <activity
+            android:name=".Cari_guru"
+            android:label="Cari"/>
         <activity android:name=".Awal_install" />
         <activity android:name=".Konfirmasi_registrasi" />
         <activity
